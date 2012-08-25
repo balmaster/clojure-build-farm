@@ -1,0 +1,1377 @@
+<deploy xmlns="http://jet.msk.su/build_farm/deploy">
+    <servers>
+        <!-- BOL servers -->
+        <server name="cdp-bolapp-www" address="${cdp-bolapp-www.address}" keyfile="${cdp-bolapp-www.keyfile}"
+            user="${cdp-bolapp-www.user}" jdk="${cdp-bolapp-www.jdk}" tar="${cdp-bolapp-www.tar}" home="${cdp-bolapp-www.home}">
+            <app_server name="resin">
+                <domain name="default" home="/opt/bol/resin" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <server name="cdp-bolapp-sms" address="${cdp-bolapp-sms.address}" keyfile="${cdp-bolapp-sms.keyfile}"
+            user="${cdp-bolapp-sms.user}" jdk="${cdp-bolapp-sms.jdk}" tar="${cdp-bolapp-sms.tar}"  home="${cdp-bolapp-sms.home}">
+            <app_server name="bol-container" home="/usr/local/ibw">
+                <domain name="1993" port="1993" id="1993">
+                    <instance name="default" id="" />
+                </domain>
+                <domain name="1994" port="1994" id="1994">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="apache" home="/opt/bol/apache">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <server name="cdp-fo-www" address="${cdp-fo-www.address}" keyfile="${cdp-fo-www.keyfile}" user="${cdp-fo-www.user}"
+            jdk="${cdp-fo-www.jdk}" tar="${cdp-fo-www.tar}"  home="${cdp-fo-www.home}">
+            <app_server name="resin">
+                <domain name="web" home="/opt/bol/resin" id="web">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <server name="cdp-fo-builder" address="${cdp-fo-builder.address}" keyfile="${cdp-fo-builder.keyfile}"
+            user="${cdp-fo-builder.user}" jdk="${cdp-fo-builder.jdk}" tar="${cdp-fo-builder.tar}"  home="${cdp-fo-builder.home}">
+            <app_server name="resin">
+                <domain name="wap" home="/opt/wap/resin" id="wap">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="apache" home="/opt/wap/httpd01_jet">
+                <domain name="default">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <server name="cdp-fo-sms" address="${cdp-fo-sms.address}" keyfile="${cdp-fo-sms.keyfile}" user="${cdp-fo-sms.user}"
+            jdk="${cdp-fo-sms.jdk}" tar="${cdp-fo-sms.tar}"  home="${cdp-fo-sms.home}">
+            <app_server name="bol-container" home="/usr/local/ibw">
+                <domain name="1993" port="1993" id="1993">
+                    <instance name="default" id="smtp" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <server name="cdp-ss01" address="${cdp-ss01.address}" keyfile="${cdp-ss01.keyfile}" user="${cdp-ss01.user}"
+            jdk="${cdp-ss01.jdk}" tar="${cdp-ss01.tar}"  home="${cdp-ss01.home}">
+            <app_server name="bol-container" home="/usr/local/ibw">
+                <domain name="1993" port="1993" id="1993">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+
+        <!-- CDP servers -->
+        <server name="cdp-content" address="${cdp-content.address}" keyfile="${cdp-content.keyfile}" user="${cdp-content.user}"
+            jdk="${cdp-content.jdk}" tar="${cdp-content.tar}"  home="${cdp-content.home}">
+            <app_server name="weblogic" home="${cdp-content.weblogic.home}" port="${cdp-content.weblogic.port}">
+                <domain name="cdp" id="${cdp-content.weblogic.cdp.id}" port="${cdp-content.weblogic.cdp.port}"
+                    home="${cdp-content.weblogic.cdp.home}" user="${cdp-content.weblogic.cdp.user}" password="${cdp-content.weblogic.cdp.password}">
+                    <instance name="cocq" id="${cdp-content.weblogic.cdp.cocq.id}" port="${cdp-content.weblogic.cdp.cocq.port}" />
+                    <instance name="ics" id="${cdp-content.weblogic.cdp.ics.id}" port="${cdp-content.weblogic.cdp.ics.port}" />
+                    <instance name="dsb" id="${cdp-content.weblogic.cdp.dsb.id}" port="${cdp-content.weblogic.cdp.dsb.port}" />
+                    <instance name="dsb-wapportal" id="${cdp-content.weblogic.cdp.dsb-wapportal.id}" port="${cdp-content.weblogic.cdp.dsb-wapportal.port}" />
+                    <instance name="drws" id="${cdp-content.weblogic.cdp.drws.id}" port="${cdp-content.weblogic.cdp.drws.port}" />
+                    <instance name="mss" id="${cdp-content.weblogic.cdp.mss.id}" port="${cdp-content.weblogic.cdp.mss.port}" />
+                    <instance name="sti" id="${cdp-content.weblogic.cdp.sti.id}" port="${cdp-content.weblogic.cdp.sti.port}" />
+                    <instance name="srt" id="${cdp-content.weblogic.cdp.srt.id}" port="${cdp-content.weblogic.cdp.srt.port}" />
+                    <instance name="srt_sp" id="${cdp-content.weblogic.cdp.srt_sp.id}" port="${cdp-content.weblogic.cdp.srt_sp.port}" />
+                    <instance name="wapportal" id="${cdp-content.weblogic.cdp.wapportal.id}" port="${cdp-content.weblogic.cdp.wapportal.port}" />
+                </domain>
+            </app_server>
+            <app_server name="glassfish" home="${cdp-content.glassfish.home}">
+                <domain name="wapportal" id="${cdp-content.glassfish.wapportal.id}" port="${cdp-content.glassfish.wapportal.port}"
+                    home="${cdp-content.glassfish.wapportal.home}" user="${cdp-content.glassfish.wapportal.user}"
+                    password="${cdp-content.glassfish.wapportal.password}">
+                    <instance name="default" id="" />
+                </domain>
+                <domain name="wapportal_preview" id="${cdp-content.glassfish.wapportal_preview.id}" port="${cdp-content.glassfish.wapportal_preview.port}"
+                    home="${cdp-content.glassfish.wapportal_preview.home}" user="${cdp-content.glassfish.wapportal_preview.user}"
+                    password="${cdp-content.glassfish.wapportal_preview.password}">
+                    <instance name="default" id="" />
+                </domain>
+                <domain name="installment" id="${cdp-content.glassfish.installment.id}" port="${cdp-content.glassfish.installment.port}"
+                    home="${cdp-content.glassfish.installment.home}" user="${cdp-content.glassfish.installment.user}"
+                    password="${cdp-content.glassfish.installment.password}">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <server name="cdp-ts01" address="${cdp-ts01.address}" keyfile="${cdp-ts01.keyfile}" user="${cdp-ts01.user}"
+            jdk="${cdp-ts01.jdk}" tar="${cdp-ts01.tar}"  home="${cdp-ts01.home}">
+            <app_server name="glassfish" home="${cdp-ts01.glassfish.home}">
+                <domain name="cdp" id="${cdp-ts01.glassfish.cdp.id}" port="${cdp-ts01.glassfish.cdp.port}" home="${cdp-ts01.glassfish.cdp.home}"
+                    user="${cdp-ts01.glassfish.cdp.user}" password="${cdp-ts01.glassfish.cdp.password}">
+                    <instance name="default" id="" />
+                </domain>
+                <domain name="cdp_spa" id="${cdp-ts01.glassfish.cdp_spa.id}" port="${cdp-ts01.glassfish.cdp_spa.port}" home="${cdp-ts01.glassfish.cdp_spa.home}"
+                    user="${cdp-ts01.glassfish.cdp_spa.user}" password="${cdp-ts01.glassfish.cdp_spa.password}">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <server name="cdp-ts02" address="${cdp-ts02.address}" keyfile="${cdp-ts02.keyfile}" user="${cdp-ts02.user}"
+            jdk="${cdp-ts02.jdk}" tar="${cdp-ts02.tar}"  home="${cdp-ts02.home}">
+            <app_server name="glassfish" home="${cdp-ts02.glassfish.home}">
+                <domain name="cdp" id="${cdp-ts02.glassfish.cdp.id}" port="${cdp-ts02.glassfish.cdp.port}" home="${cdp-ts02.glassfish.cdp.home}"
+                    user="${cdp-ts02.glassfish.cdp.user}" password="${cdp-ts02.glassfish.cdp.password}">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="loggingservice" home="/opt/volantis/loggingservice/">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <!-- CMB -->
+        <server name="bolcmb1" address="${bolcmb1.address}" keyfile="${bolcmb1.keyfile}" user="${bolcmb1.user}"
+            jdk="${bolcmb1.jdk}" tar="${bolcmb1.tar}"  home="${bolcmb1.home}">
+            <app_server name="bol-container" home="/opt/callmeback/ibw">
+                <domain name="1993" port="1993" id="1993">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+        <server name="cmbintra1" address="${cmbintra1.address}" keyfile="${cmbintra1.keyfile}" user="${cmbintra1.user}"
+            jdk="${cmbintra1.jdk}" tar="${cmbintra1.tar}"  home="${cmbintra1.home}">
+            <app_server name="resin">
+                <domain name="default" home="/opt/callmeback/resin" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="apache" home="/opt/callmeback/httpd">
+                <domain name="default">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+            <app_server name="default">
+                <domain name="default" id="">
+                    <instance name="default" id="" />
+                </domain>
+            </app_server>
+        </server>
+    </servers>
+
+    <services>
+        <!-- CDP services -->
+        <service enabled="true" name="drws" description="База данных свойств телефонов">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="repository" groupId="cdp" artifactId="repository" basedir="/opt/volantis/repository"
+                    checksum_excludes="META-INF/**:devicerepository/META-INF/**:devicerepository/tmp*/**:devicerepository/wurfl.xml:devicerepository/devices.mdpr"
+                    delete_excludes="**/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="drws">
+                <component name="drws" groupId="cdp" artifactId="drws" basedir="/opt/volantis/webapps/drws"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="drws" classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="ics" description="Преобразование изображений">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="ics">
+                <component name="ics" groupId="cdp" artifactId="ics" basedir="/opt/volantis/webapps/ics"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="ics" classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="dsb" description="Адаптация страниц для устройств пользователя">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="dsb">
+                <component name="dsb" groupId="cdp" artifactId="dsb" basedir="/opt/volantis/webapps/dsb"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="dsb" classifier="bin" />
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="wapportal-dsb" description="Адаптация страниц для устройств пользователя WAP">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="dsb-wapportal">
+                <component name="wapportal-dsb" groupId="cdp" artifactId="dsb" basedir="/opt/volantis/webapps/wapportal-dsb"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="dsb" classifier="bin" />
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="mcs" description="">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="dsb">
+                <component name="mcs" groupId="cdp" artifactId="mcs" basedir="/opt/volantis/webapps/mcs"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="mcs" classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="mcs-resources">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="dsb">
+                <component name="mcs-resources" groupId="cdp" artifactId="mcs-resources" basedir="/opt/volantis/webapps/mcs-resources"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log:wap-images-temp/**:wap-images/**:wap-images-preview-temp/**"
+                    delete_excludes="WEB-INF/*.log:wap-images-temp/**:wap-images/**:wap-images-preview-temp/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="wapportal-mcs-resources">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="dsb-wapportal">
+                <component name="wapportal-mcs-resources" groupId="cdp" artifactId="mcs-resources" basedir="/opt/volantis/webapps/wapportal-mcs-resources"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log:wap-images-temp/**:wap-images/**:wap-images-preview-temp/**"
+                    delete_excludes="WEB-INF/*.log:wap-images-temp/**:wap-images/**:wap-images-preview-temp/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="mss" description="">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="mss">
+                <component name="mss" groupId="cdp" artifactId="mss" basedir="/opt/volantis/webapps/mss"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="mss" classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="mss-subscriberprovision" description="Получение изменений в состоянии абонентов">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="mss">
+                <component name="mss-subscriberprovision" groupId="cdp" artifactId="mss-subscriberprovision"
+                    basedir="/opt/volantis/webapps/mss-subscriberprovision" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="srt" description="Обработка заказов абонентов и отгрузка контента">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="srt">
+                <component name="srt" groupId="cdp" artifactId="srt" basedir="/opt/volantis/webapps/srt"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="srt" classifier="bin" />
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="srt-sp" description="Публикация контента">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="srt_sp">
+                <component name="srt-sp" groupId="cdp" artifactId="srt" basedir="/opt/volantis/webapps/srt-sp"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="srt" classifier="bin" />
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="storefront" description="Управление структурой витрин ваппортала">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="srt_sp">
+                <component name="storefront-sp" groupId="cdp" artifactId="storefront" basedir="/opt/volantis/webapps/storefront-sp"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="storefront-sp" classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="download" description="Отдача цифрового контента">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="srt">
+                <component name="download" groupId="cdp" artifactId="download" basedir="/opt/volantis/webapps/download"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="wapportal-srt" description="Генерация структуры страниц ваппортала">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="wapportal">
+                <component name="wapportal-srt" groupId="cdp" artifactId="srt" basedir="/opt/volantis/webapps/wapportal-srt"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="srt" classifier="bin" />
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+                <component name="wapportal-srt-sp" groupId="cdp" artifactId="srt"
+                    basedir="/opt/volantis/webapps/wapportal-srt-sp" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="srt" classifier="bin" />
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="mm7-proxy" description="Обработка заказов легаси контента">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="sti">
+                <component name="mm7-proxy" groupId="cdp" artifactId="mm7-proxy" basedir="/opt/volantis/webapps/mm7-proxy"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="sti-proxy" description="Транскодирование видео и аудио контента">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="sti">
+                <component name="sti-proxy" groupId="cdp" artifactId="sti-proxy" basedir="/opt/volantis/webapps/sti-proxy"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly groupId="volantis" artifactId="sti-proxy" classifier="bin" />
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="services" description="Логирование и отправка сообщений">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="srt">
+                <component name="services-ear" groupId="cdp" artifactId="services-ear" basedir="/opt/volantis/services/services-ear"
+                    checksum_excludes="META-INF/**:WEB-INF/*.log" delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="subscribers" description="Отображение номеров абонентов на внутренние id">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="mss">
+                <component name="subscribers-ear" groupId="cdp" artifactId="subscribers-ear"
+                    basedir="/opt/volantis/services/subscribers-ear" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="wapportal">
+                <component name="subscribers-ear" groupId="cdp" artifactId="subscribers-ear"
+                    basedir="/opt/volantis/services/subscribers-ear" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="srt">
+                <component name="subscribers-ear" groupId="cdp" artifactId="subscribers-ear"
+                    basedir="/opt/volantis/services/subscribers-ear" checksum_excludes="META-INF/**:WEB-INF/*.log*"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="cdphandler" description="Обработка заказов USSD order и GENERIC order">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="cocq">
+                <component name="cdphandler" groupId="cdp" artifactId="cdphandler"
+                    basedir="/opt/volantis/content-order-queue/cdphandler" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="cocq-republish" description="">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="cocq">
+                <component name="cocq_republish" groupId="cdp" artifactId="cocq-republish"
+                    basedir="/opt/volantis/content-order-queue/cocq-republish" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="ivrhandler" description="Обработка заказов от IVR и BeeNumber">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="cocq">
+                <component name="ivrhandler" groupId="cdp" artifactId="ivrhandler"
+                    basedir="/opt/volantis/content-order-queue/ivrhandler" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="webhandler" description="Обработка заказов WEB order и CPA handler">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="cocq">
+                <component name="webhandler" groupId="cdp" artifactId="webhandler"
+                    basedir="/opt/volantis/content-order-queue/webhandler" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="dispatcher-ear" description="Обслуживание JMS очереди заказов">
+            <server ref="cdp-content" app_server="weblogic" domain="cdp" instance="cocq">
+                <component name="dispatcher_ear" groupId="cdp" artifactId="dispatcher-ear"
+                    basedir="/opt/volantis/content-order-queue/dispatcher-ear" checksum_excludes="META-INF/**:WEB-INF/*.log"
+                    delete_excludes="WEB-INF/*.log">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <service enabled="true" name="squid" description="Кеширование страниц и контента">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="squid" groupId="cdp" artifactId="squid" basedir="/opt/volantis/squid"
+                    checksum_includes="config/**" delete_excludes="**/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <service enabled="true" name="external-config" description="Внешние конфигурационные файлы cdp">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="cdp-external-config" groupId="cdp" artifactId="external-config" basedir="/opt/volantis/conf"
+                    checksum_includes="advice-of-charge.properties:exchange-rate.properties:mss-common.properties:service-mapping.xml:transcodeMap.utf8:blockuserservice.properties:filename-templates.conf:mss-subscriberprovision-log4j.xml:service-messaging.properties:webauthentication.properties:cdphandler-log4j.xml:ivr.properties:mss-subscriberprovision.properties:service-messaging.xml:webhandler-log4j.xml:cdphandler.properties:oscache.properties:service-secret-codes.properties:webhandler.properties:cdp.properties:service-subscribers.properties:cocq.properties:mime.utf8:republish.properties:service-subscribers.xml:dispatcher-log4j.xml:mm7-proxy.properties:service-mapping.properties:smschandler.properties"
+                    delete_excludes="**/**" dependents="component.cdp-content.weblogic.cdp.sti.mm7-proxy.cdp.mm7-proxy,component.cdp-content.weblogic.cdp.mss.mss.cdp.mss,component.cdp-content.weblogic.cdp.cocq.ivrhandler.cdp.ivrhandler,component.cdp-content.weblogic.cdp.mss.mss-subscriberprovision.cdp.mss-subscriberprovision,component.cdp-content.weblogic.cdp.cocq.webhandler.cdp.webhandler,component.cdp-content.weblogic.cdp.cocq.cdphandler.cdp.cdphandler,component.cdp-content.weblogic.cdp.cocq.cocq_republish.cdp.cocq-republish,component.cdp-content.weblogic.cdp.mss.subscribers-ear.cdp.subscribers-ear,component.cdp-content.weblogic.cdp.wapportal.subscribers-ear.cdp.subscribers-ear,component.cdp-content.weblogic.cdp.srt.subscribers-ear.cdp.subscribers-ear,component.cdp-content.weblogic.cdp.srt.srt.cdp.srt,component.cdp-content.weblogic.cdp.srt_sp.srt-sp.cdp.srt,component.cdp-content.weblogic.cdp.srt_sp.storefront-sp.cdp.storefront,component.cdp-content.weblogic.cdp.wapportal.wapportal-srt.cdp.srt,component.cdp-content.weblogic.cdp.wapportal.wapportal-srt-sp.cdp.srt,component.cdp-content.weblogic.cdp.srt.services-ear.cdp.services-ear,component.cdp-content.weblogic.cdp.srt.download.cdp.download,component.cdp-content.weblogic.cdp.cocq.dispatcher_ear.cdp.dispatcher-ear,component.cdp-content.weblogic.cdp.sti.sti-proxy.cdp.sti-proxy">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="logs" description="Логи">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="cdp_logging" groupId="cdp" artifactId="logging-dir" basedir="/opt/volantis/logging"
+                    checksum_excludes="**/**" delete_excludes="**/**">
+                    <assembly classifier="bin" />
+                </component>
+                <component name="cdp_logs" groupId="cdp" artifactId="logs-dir" basedir="/opt/volantis/logs"
+                    checksum_excludes="**/**" delete_excludes="**/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="monitor" description="Скрипты мониторинга системы">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="monitor" groupId="cdp" artifactId="monitor" basedir="/opt/volantis/monitor"
+                    checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="cache" description="">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="cache" groupId="cdp" artifactId="cache-dir" basedir="/opt/volantis/cache" checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="cdp-lib" description="Пользовательские библиотеки для WEBLOGIC">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="cdp_lib" groupId="cdp" artifactId="lib" basedir="/opt/volantis/lib" checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <service enabled="true" name="mdpr-merge" description="Утилита для преобразования репозитария устройств">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="mdpr_merge" groupId="cdp" artifactId="mdpr_merge" basedir="/opt/volantis/mdprMerge" 
+                    checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                    <assembly classifier="conf" />
+                </component>
+            </server>
+        </service>
+
+        <service enabled="true" name="cdp-script" description="">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="cdp_script" groupId="cdp" artifactId="script" basedir="/opt/volantis/script"
+                    checksum_excludes="META-INF/**:install-*.sh:**/.svn/**:sfconf/**" delete_excludes="sfconf/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <service enabled="true" name="installment" description="Сервис управления рассрочками">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                 <component name="installment_service" groupId="cdp" artifactId="installment-service"
+                    basedir="/opt/volantis/conf/" checksum_includes="installment-log4j.xml" delete_excludes="**/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-content" app_server="glassfish" domain="installment" instance="default">
+                <component name="installment_service" groupId="cdp" artifactId="installment-service"
+                    basedir="/opt/volantis/webapps/installment_service" app_file="cdp.installment-service.war" checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <service enabled="true" name="waprender" description="Наполнение страниц ваппортала">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="wurfl" groupId="cdp.waprender" artifactId="service"
+                    basedir="/opt/volantis/repository/devicerepository/" checksum_includes="wurfl.xml" 
+                       delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly classifier="config" />
+                </component>
+                <component name="waprender" groupId="cdp.waprender" artifactId="service" basedir="/opt/volantis/conf/"
+                    checksum_includes="render*.*" delete_excludes="**/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-content" app_server="glassfish" domain="wapportal" instance="default">
+                <component name="waprender" groupId="cdp.waprender" artifactId="service"
+                    basedir="/opt/volantis/webapps/waprender" app_file="cdp.waprender-service.ear" checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-content" app_server="glassfish" domain="wapportal_preview" instance="default">
+                <component name="waprender" groupId="cdp.waprender" artifactId="service"
+                    basedir="/opt/volantis/webapps/waprender-preview" app_file="cdp.waprender-service.ear" checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <service enabled="true" name="cleanuptool" description="Утилита для очистки логов">
+            <server ref="cdp-content" app_server="glassfish" domain="wapportal" instance="default">
+                <component name="cleanuptool" groupId="cdp" artifactId="cleanuptool" basedir="/opt/volantis/webapps/cleanuptool"
+                    app_file="cdp-cleanuptool.war" checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+
+            </server>
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="cleanuptool_client" groupId="cdp" artifactId="cleanuptool_client" basedir="/opt/volantis/cleanuptool"
+                           checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+                <component name="cleanuptool" groupId="cdp" artifactId="cleanuptool" basedir="/opt/volantis/conf/"
+                    checksum_includes="service-cleanuptool.xml" delete_excludes="**/**">
+                    <assembly classifier="config" />
+                </component>
+
+            </server>
+        </service>
+
+        <service enabled="true" name="storefront-service-config" description="Шаблоны страниц">
+            <server ref="cdp-content" app_server="default" domain="default" instance="default">
+                <component name="storefront_service_config" groupId="cdp" artifactId="storefront-service-config"
+                    basedir="cdp/storefront-service-config" checksum_excludes="**/**" delete_excludes="**/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <service enabled="true" name="charging-service" description="Тарификация абонентов">
+            <server ref="cdp-ts01" app_server="default" domain="default" instance="default">
+                <component name="charging_service" groupId="cdp.chargingservice" artifactId="service"
+                    basedir="/opt/volantis/conf" checksum_includes="chargingservice-log4j.xml:chargingservice.properties"
+                    delete_excludes="**/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-ts01" app_server="glassfish" domain="cdp" instance="default">
+                <component name="charging_service" groupId="cdp.chargingservice" artifactId="service"
+                    basedir="/opt/volantis/webapps/charging_service" app_file="cdp.chargingservice-service.war"
+                    checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="subprofile-access-service" description="Получение статуса абонентов">
+            <server ref="cdp-ts01" app_server="default" domain="default" instance="default">
+                <component name="subprofile_access_service" groupId="cdp.sub-profile-access-service"
+                    artifactId="service" basedir="/opt/volantis/conf/" checksum_includes="subprofileaccessservice-log4j.xml:subprofileaccessservice.properties"
+                    delete_excludes="**/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-ts01" app_server="glassfish" domain="cdp_spa" instance="default">
+                <component name="subprofile_access_service" groupId="cdp.sub-profile-access-service"
+                    artifactId="service" basedir="/opt/volantis/webapps/subprofile_access_service/" 
+                    app_file="cdp.sub-profile-access-service-service.war" checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-ts01" app_server="glassfish" domain="cdp" instance="default">
+                <component enabled="false"  name="subprofile_access_service" groupId="cdp.sub-profile-access-service"
+                    artifactId="service" basedir="/opt/volantis/webapps/subprofile_access_service/" app_file="cdp.sub-profile-access-service-service.war">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="logging-service" description="Логирование бизнес транзакций">
+            <server ref="cdp-ts02" app_server="loggingservice" domain="default" instance="default">
+                <component name="logging_service" groupId="cdp.loggingservice" artifactId="service"
+                    basedir="/opt/volantis/loggingservice/" checksum_excludes="META-INF/**:logs/**:smstails/**:*.out*:keystore.jks"
+                    delete_excludes="*.out:logs/**.log*:keystore.jks">
+                    <assembly classifier="config" />
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="provisioning-service" description="Получение сведений о изменении состояния абонентов">
+            <server ref="cdp-ts02" app_server="default" domain="default" instance="default">
+                <component name="provisioning_service" groupId="cdp.provisioningservice" artifactId="service"
+                    basedir="/opt/volantis/conf" checksum_includes="subscriberprovision-log4j.xml:subscriberprovision.properties"
+                    delete_excludes="**/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-ts02" app_server="glassfish" domain="cdp" instance="default">
+                <component name="provisioning_service" groupId="cdp.provisioningservice" artifactId="service"
+                    basedir="/opt/volantis/webapps/provisioning_service" app_file="cdp.provisioningservice-service.war"
+                    checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service enabled="true" name="sms-tails" description="Отсылка рекламных сообщений">
+            <server ref="cdp-ts02" app_server="default" domain="default" instance="default">
+                <component name="sms_tails" groupId="cdp.smstails" artifactId="service" basedir="/opt/volantis/conf"
+                    checksum_includes="smstails-log4j.xml" delete_excludes="**/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-ts02" app_server="glassfish" domain="cdp" instance="default">
+                <component name="sms_tails" groupId="cdp.smstails" artifactId="service"
+                    basedir="/opt/volantis/webapps/smstails-ear" app_file="cdp.smstails-service.ear"
+                    checksum_excludes="META-INF/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <!-- BOL services -->
+        <service name="bol-backoffice" description="Бекофис абонентской службы">
+            <server ref="cdp-bolapp-www" app_server="resin" domain="default" instance="default">
+                <component name="backoffice" groupId="bol" artifactId="back_office" basedir="/srv/www/backoffice/back"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**:images/wap_images/**:ringtones/**:wap_images/**">
+                    <assembly classifier="bin" />
+                </component>
+                <component name="resin" groupId="bol" artifactId="resin" basedir="/opt/bol/resin"
+                    delete_excludes="**/**" checksum_includes="conf/**" checksum_excludes="conf/dc345certstore">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <service name="bol-common-lib" enabled="true" description="Разделяемые библиотеки">
+            <!-- от одних и техже библиотек, завясят и контейнеры и resin, по случайности библиотеки лежат в одной и тойже папке -->
+            <server ref="cdp-bolapp-sms" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                </component>
+            </server>
+            <server ref="cdp-bolapp-www" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                </component>
+            </server>
+
+            <server ref="cdp-bolapp-www" app_server="resin" domain="default" instance="default">
+                <component name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-bolapp-sms" app_server="bol-container" domain="1993" instance="default">
+                <component name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-bolapp-sms" app_server="bol-container" domain="1994" instance="default">
+                <component name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+
+			<!-- от одних и техже библиотек, завясят и контейнеры и resin, по случайности библиотеки лежат в одной и тойже папке -->
+            <server ref="cdp-fo-sms" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                </component>
+            </server>
+            <server ref="cdp-fo-sms" app_server="bol-container" domain="1993" instance="default">
+                <component name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-fo-www" app_server="resin" domain="web" instance="default">
+                <component name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+
+            <server ref="cdp-fo-builder" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="common_lib" groupId="bol" artifactId="common_lib" basedir="/opt/wap/core/java/lib/"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                </component>
+            </server>
+            <server ref="cdp-fo-builder" app_server="resin" domain="wap" instance="default">
+                <component name="common_lib" groupId="bol" artifactId="common_lib" basedir="/opt/wap/core/java/lib/"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+
+            <server ref="cdp-ss01" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                </component>
+            </server>
+            <server ref="cdp-ss01" app_server="bol-container" domain="1993" instance="default">
+                <component name="common_lib" groupId="bol" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+        <service name="bol-applications" enabled="true" description="Прикладные обработчики">
+            <server ref="cdp-bolapp-sms" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="ibwsrv" groupId="bol" artifactId="ibwsrv" basedir="/usr/local/ibw"
+                    delete_excludes="**/**" checksum_includes="*.ini:*.sh:_CMDINI/**" encoding="cp1251" eol="dos">
+                </component>
+                <component enabled="false" name="applications" groupId="bol" artifactId="applications" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                </component>
+            </server>
+            <server ref="cdp-bolapp-sms" app_server="bol-container" domain="1993" instance="default">
+                <component name="ibwsrv" groupId="bol" artifactId="ibwsrv" basedir="/usr/local/ibw"
+                    delete_excludes="**/**" checksum_includes="*.ini:*.sh:_CMDINI/**" encoding="cp1251" eol="dos">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+                <component name="applications" groupId="bol" artifactId="applications" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly name="core" artifactId="core" classifier="bin" />
+                    <assembly name="proxyst" artifactId="proxyst" classifier="bin" />
+					<assembly name="lbcore" artifactId="lbcore" classifier="bin" />
+					<assembly name="ems" artifactId="ems" classifier="bin" />
+					<assembly name="qstmng" artifactId="qstmng" classifier="bin" />
+					<assembly name="hameleon" artifactId="hameleon" classifier="bin" />
+					<assembly name="lb" artifactId="lb" classifier="bin" />
+					<assembly name="ivr" artifactId="ivr" classifier="bin" />
+					<assembly name="beecmd" artifactId="beecmd" classifier="bin" />
+					<assembly name="beesite" artifactId="beesite" classifier="bin" />
+					<assembly name="beedoc" artifactId="beedoc" classifier="bin" />
+                    <assembly name="ibwsrv" artifactId="ibwsrv" classifier="bin" />
+                    <assembly name="ibwext" artifactId="ibwext" classifier="bin" />
+                    <assembly name="sms" artifactId="sms" classifier="bin" />
+                    <assembly name="accessrights" artifactId="accessrights" classifier="bin" />
+                    <assembly name="anekdot" artifactId="anekdot" classifier="bin" />
+                    <assembly name="beseda" artifactId="beseda" classifier="bin" />
+                    <assembly name="bolnews" artifactId="bolnews" classifier="bin" />
+                    <assembly name="boltariff" artifactId="boltariff" classifier="bin" />
+                    <assembly name="celltick" artifactId="celltick" classifier="bin" />
+                    <assembly name="chat" artifactId="chat" classifier="bin" />
+                    <assembly name="command" artifactId="command" classifier="bin" />
+                    <assembly name="do" artifactId="do" classifier="bin" />
+                    <assembly name="dohttp" artifactId="dohttp" classifier="bin" />
+                    <assembly name="emsldr" artifactId="emsldr" classifier="bin" />
+                    <assembly name="fantiki" artifactId="fantiki" classifier="bin" />
+                    <assembly name="kp" artifactId="kp" classifier="bin" />
+                    <assembly name="ks" artifactId="ks" classifier="bin" />
+                    <assembly name="lla" artifactId="lla" classifier="bin" />
+                    <assembly name="logo" artifactId="logo" classifier="bin" />
+                    <assembly name="news" artifactId="news" classifier="bin" />
+                    <assembly name="post" artifactId="post" classifier="bin" />
+                    <assembly name="promo" artifactId="promo" classifier="bin" />
+                    <assembly name="provisioning" artifactId="provisioning" classifier="bin" />
+                    <assembly name="reportd" artifactId="reportd" classifier="bin" />
+                    <assembly name="sendme" artifactId="sendme" classifier="bin" />
+                    <assembly name="service" artifactId="service" classifier="bin" />
+                    <assembly name="smsproxy" artifactId="smsproxy" classifier="bin" />
+                    <assembly name="smstails" artifactId="smstails" classifier="bin" />
+                    <assembly name="smstext686" artifactId="smstext686" classifier="bin" />
+                    <assembly name="smtp" artifactId="smtp" classifier="bin" />
+                    <assembly name="submit" artifactId="submit" classifier="bin" />
+                    <assembly name="sym" artifactId="sym" classifier="bin" />
+                    <assembly name="telnet_sc" artifactId="telnet_sc" classifier="bin" />
+                    <assembly name="trdp" artifactId="trdp" classifier="bin" />
+                    <assembly name="trans" artifactId="trans" classifier="bin" />
+                    <assembly name="une" artifactId="une" classifier="bin" />
+                    <assembly name="une_grabber" artifactId="une_grabber" classifier="bin" />
+                    <assembly name="url" artifactId="url" classifier="bin" />
+                    <assembly name="urlsite" artifactId="urlsite" classifier="bin" />
+                    <assembly name="ussd" artifactId="ussd" classifier="bin" />
+                    <assembly name="ussd2http" artifactId="ussd2http" classifier="bin" />
+
+                    <assembly name="rt" artifactId="rt" classifier="bin" />
+                    <assembly name="wap-color" artifactId="wap_color" classifier="bin" />
+                    <assembly name="une-push" artifactId="une_push" classifier="bin" />
+                    <assembly name="wap-srt" artifactId="wap_srt" classifier="bin" />
+
+                    <assembly name="installment-task" artifactId="installment-task" classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-bolapp-sms" app_server="bol-container" domain="1994" instance="default">
+                <component name="applications" groupId="bol" artifactId="applications" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly name="core" artifactId="core" classifier="bin" />
+                    <assembly name="proxyst" artifactId="proxyst" classifier="bin" />
+					<assembly name="lbcore" artifactId="lbcore" classifier="bin" />
+					<assembly name="ems" artifactId="ems" classifier="bin" />
+					<assembly name="qstmng" artifactId="qstmng" classifier="bin" />
+					<assembly name="hameleon" artifactId="hameleon" classifier="bin" />
+					<assembly name="lb" artifactId="lb" classifier="bin" />
+					<assembly name="ivr" artifactId="ivr" classifier="bin" />
+					<assembly name="beecmd" artifactId="beecmd" classifier="bin" />
+					<assembly name="beesite" artifactId="beesite" classifier="bin" />
+					<assembly name="beedoc" artifactId="beedoc" classifier="bin" />
+                    <assembly name="ibwsrv" artifactId="ibwsrv" classifier="bin" />
+                    <assembly name="ibwext" artifactId="ibwext" classifier="bin" />
+                    <assembly name="sms" artifactId="sms" classifier="bin" />
+                    <assembly name="accessrights" artifactId="accessrights" classifier="bin" />
+                    <assembly name="anekdot" artifactId="anekdot" classifier="bin" />
+                    <assembly name="beseda" artifactId="beseda" classifier="bin" />
+                    <assembly name="bolnews" artifactId="bolnews" classifier="bin" />
+                    <assembly name="boltariff" artifactId="boltariff" classifier="bin" />
+                    <assembly name="celltick" artifactId="celltick" classifier="bin" />
+                    <assembly name="chat" artifactId="chat" classifier="bin" />
+                    <assembly name="command" artifactId="command" classifier="bin" />
+                    <assembly name="do" artifactId="do" classifier="bin" />
+                    <assembly name="dohttp" artifactId="dohttp" classifier="bin" />
+                    <assembly name="emsldr" artifactId="emsldr" classifier="bin" />
+                    <assembly name="fantiki" artifactId="fantiki" classifier="bin" />
+                    <assembly name="kp" artifactId="kp" classifier="bin" />
+                    <assembly name="ks" artifactId="ks" classifier="bin" />
+                    <assembly name="lla" artifactId="lla" classifier="bin" />
+                    <assembly name="logo" artifactId="logo" classifier="bin" />
+                    <assembly name="news" artifactId="news" classifier="bin" />
+                    <assembly name="post" artifactId="post" classifier="bin" />
+                    <assembly name="promo" artifactId="promo" classifier="bin" />
+                    <assembly name="provisioning" artifactId="provisioning" classifier="bin" />
+                    <assembly name="reportd" artifactId="reportd" classifier="bin" />
+                    <assembly name="sendme" artifactId="sendme" classifier="bin" />
+                    <assembly name="service" artifactId="service" classifier="bin" />
+                    <assembly name="smsproxy" artifactId="smsproxy" classifier="bin" />
+                    <assembly name="smstails" artifactId="smstails" classifier="bin" />
+                    <assembly name="smstext686" artifactId="smstext686" classifier="bin" />
+                    <assembly name="smtp" artifactId="smtp" classifier="bin" />
+                    <assembly name="submit" artifactId="submit" classifier="bin" />
+                    <assembly name="sym" artifactId="sym" classifier="bin" />
+                    <assembly name="telnet_sc" artifactId="telnet_sc" classifier="bin" />
+                    <assembly name="trdp" artifactId="trdp" classifier="bin" />
+                    <assembly name="trans" artifactId="trans" classifier="bin" />
+                    <assembly name="une" artifactId="une" classifier="bin" />
+                    <assembly name="une_grabber" artifactId="une_grabber" classifier="bin" />
+                    <assembly name="url" artifactId="url" classifier="bin" />
+                    <assembly name="urlsite" artifactId="urlsite" classifier="bin" />
+                    <assembly name="ussd" artifactId="ussd" classifier="bin" />
+                    <assembly name="ussd2http" artifactId="ussd2http" classifier="bin" />
+
+                    <assembly name="rt" artifactId="rt" classifier="bin" />
+                    <assembly name="wap-color" artifactId="wap_color" classifier="bin" />
+                    <assembly name="une-push" artifactId="une_push" classifier="bin" />
+                    <assembly name="wap-srt" artifactId="wap_srt" classifier="bin" />
+
+                    <assembly name="installment-task" artifactId="installment-task" classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-fo-sms" app_server="default" domain="default" instance="default">
+                <component enabled="false"  name="ibwsrv" groupId="bol" artifactId="ibwsrv" basedir="/usr/local/ibw"
+                    delete_excludes="**/**" checksum_includes="*.ini:*.sh:_CMDINI/**" encoding="cp1251" eol="dos">
+                </component>
+                <component enabled="false" name="applications" groupId="bol" artifactId="applications" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                </component>
+            </server>
+            <server ref="cdp-fo-sms" app_server="bol-container" domain="1993" instance="default">
+                <component name="ibwsrv" groupId="bol" artifactId="ibwsrv" basedir="/usr/local/ibw"
+                    delete_excludes="**/**" checksum_includes="*.ini:*.sh:_CMDINI/**" encoding="cp1251" eol="dos">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+                <component name="applications" groupId="bol" artifactId="applications" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly name="core" artifactId="core" classifier="bin" />
+                    <assembly name="proxyst" artifactId="proxyst" classifier="bin" />
+					<assembly name="lbcore" artifactId="lbcore" classifier="bin" />
+					<assembly name="ems" artifactId="ems" classifier="bin" />
+					<assembly name="qstmng" artifactId="qstmng" classifier="bin" />
+					<assembly name="hameleon" artifactId="hameleon" classifier="bin" />
+					<assembly name="lb" artifactId="lb" classifier="bin" />
+					<assembly name="ivr" artifactId="ivr" classifier="bin" />
+					<assembly name="beecmd" artifactId="beecmd" classifier="bin" />
+					<assembly name="beesite" artifactId="beesite" classifier="bin" />
+					<assembly name="beedoc" artifactId="beedoc" classifier="bin" />
+                    <assembly name="ibwsrv" artifactId="ibwsrv" classifier="bin" />
+                    <assembly name="ibwext" artifactId="ibwext" classifier="bin" />
+                    <assembly name="sms" artifactId="sms" classifier="bin" />
+
+                    <assembly name="accessrights" artifactId="accessrights" classifier="bin" />
+                    <assembly name="anekdot" artifactId="anekdot" classifier="bin" />
+                    <assembly name="beseda" artifactId="beseda" classifier="bin" />
+                    <assembly name="bolnews" artifactId="bolnews" classifier="bin" />
+                    <assembly name="boltariff" artifactId="boltariff" classifier="bin" />
+                    <assembly name="celltick" artifactId="celltick" classifier="bin" />
+                    <assembly name="chat" artifactId="chat" classifier="bin" />
+                    <assembly name="command" artifactId="command" classifier="bin" />
+                    <assembly name="do" artifactId="do" classifier="bin" />
+                    <assembly name="dohttp" artifactId="dohttp" classifier="bin" />
+                    <assembly name="emsldr" artifactId="emsldr" classifier="bin" />
+                    <assembly name="fantiki" artifactId="fantiki" classifier="bin" />
+                    <assembly name="kp" artifactId="kp" classifier="bin" />
+                    <assembly name="ks" artifactId="ks" classifier="bin" />
+                    <assembly name="lla" artifactId="lla" classifier="bin" />
+                    <assembly name="logo" artifactId="logo" classifier="bin" />
+                    <assembly name="news" artifactId="news" classifier="bin" />
+                    <assembly name="post" artifactId="post" classifier="bin" />
+                    <assembly name="promo" artifactId="promo" classifier="bin" />
+                    <assembly name="provisioning" artifactId="provisioning" classifier="bin" />
+                    <assembly name="reportd" artifactId="reportd" classifier="bin" />
+                    <assembly name="sendme" artifactId="sendme" classifier="bin" />
+                    <assembly name="service" artifactId="service" classifier="bin" />
+                    <assembly name="smsproxy" artifactId="smsproxy" classifier="bin" />
+                    <assembly name="smstails" artifactId="smstails" classifier="bin" />
+                    <assembly name="smstext686" artifactId="smstext686" classifier="bin" />
+                    <assembly name="smtp" artifactId="smtp" classifier="bin" />
+                    <assembly name="submit" artifactId="submit" classifier="bin" />
+                    <assembly name="sym" artifactId="sym" classifier="bin" />
+                    <assembly name="telnet_sc" artifactId="telnet_sc" classifier="bin" />
+                    <assembly name="trans" artifactId="trans" classifier="bin" />
+                    <assembly name="trdp" artifactId="trdp" classifier="bin" />
+                    <assembly name="une" artifactId="une" classifier="bin" />
+                    <assembly name="une_grabber" artifactId="une_grabber" classifier="bin" />
+                    <assembly name="url" artifactId="url" classifier="bin" />
+                    <assembly name="urlsite" artifactId="urlsite" classifier="bin" />
+                    <assembly name="ussd" artifactId="ussd" classifier="bin" />
+                    <assembly name="ussd2http" artifactId="ussd2http" classifier="bin" />
+
+                    <assembly name="rt" artifactId="rt" classifier="bin" />
+                    <assembly name="wap-color" artifactId="wap_color" classifier="bin" />
+                    <assembly name="une-push" artifactId="une_push" classifier="bin" />
+                    <assembly name="wap-srt" artifactId="wap_srt" classifier="bin" />
+
+                    <assembly name="installment-task" artifactId="installment-task" classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-fo-builder" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="applications" groupId="bol" artifactId="applications" basedir="/opt/wap/core/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                </component>
+            </server>
+            <server ref="cdp-fo-builder" app_server="resin" domain="wap" instance="default">
+                <component name="applications" groupId="bol" artifactId="applications" basedir="/opt/wap/core/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly name="core" artifactId="core" classifier="bin" />
+                    <assembly name="proxyst" artifactId="proxyst" classifier="bin" />
+					<assembly name="lbcore" artifactId="lbcore" classifier="bin" />
+					<assembly name="ems" artifactId="ems" classifier="bin" />
+					<assembly name="qstmng" artifactId="qstmng" classifier="bin" />
+					<assembly name="hameleon" artifactId="hameleon" classifier="bin" />
+					<assembly name="lb" artifactId="lb" classifier="bin" />
+					<assembly name="ivr" artifactId="ivr" classifier="bin" />
+					<assembly name="beecmd" artifactId="beecmd" classifier="bin" />
+					<assembly name="beesite" artifactId="beesite" classifier="bin" />
+					<assembly name="beedoc" artifactId="beedoc" classifier="bin" />
+                    <assembly name="ibwsrv" artifactId="ibwsrv" classifier="bin" />
+                    <assembly name="ibwext" artifactId="ibwext" classifier="bin" />
+                    <assembly name="sms" artifactId="sms" classifier="bin" />
+
+                    <assembly name="accessrights" artifactId="accessrights" classifier="bin" />
+                    <assembly name="anekdot" artifactId="anekdot" classifier="bin" />
+                    <assembly name="beseda" artifactId="beseda" classifier="bin" />
+                    <assembly name="bolnews" artifactId="bolnews" classifier="bin" />
+                    <assembly name="boltariff" artifactId="boltariff" classifier="bin" />
+                    <assembly name="celltick" artifactId="celltick" classifier="bin" />
+                    <assembly name="chat" artifactId="chat" classifier="bin" />
+                    <assembly name="command" artifactId="command" classifier="bin" />
+                    <assembly name="do" artifactId="do" classifier="bin" />
+                    <assembly name="dohttp" artifactId="dohttp" classifier="bin" />
+                    <assembly name="emsldr" artifactId="emsldr" classifier="bin" />
+                    <assembly name="fantiki" artifactId="fantiki" classifier="bin" />
+                    <assembly name="kp" artifactId="kp" classifier="bin" />
+                    <assembly name="ks" artifactId="ks" classifier="bin" />
+                    <assembly name="lla" artifactId="lla" classifier="bin" />
+                    <assembly name="logo" artifactId="logo" classifier="bin" />
+                    <assembly name="news" artifactId="news" classifier="bin" />
+                    <assembly name="post" artifactId="post" classifier="bin" />
+                    <assembly name="promo" artifactId="promo" classifier="bin" />
+                    <assembly name="provisioning" artifactId="provisioning" classifier="bin" />
+                    <assembly name="reportd" artifactId="reportd" classifier="bin" />
+                    <assembly name="sendme" artifactId="sendme" classifier="bin" />
+                    <assembly name="service" artifactId="service" classifier="bin" />
+                    <assembly name="smsproxy" artifactId="smsproxy" classifier="bin" />
+                    <assembly name="smstails" artifactId="smstails" classifier="bin" />
+                    <assembly name="smstext686" artifactId="smstext686" classifier="bin" />
+                    <assembly name="smtp" artifactId="smtp" classifier="bin" />
+                    <assembly name="submit" artifactId="submit" classifier="bin" />
+                    <assembly name="sym" artifactId="sym" classifier="bin" />
+                    <assembly name="telnet_sc" artifactId="telnet_sc" classifier="bin" />
+                    <assembly name="trans" artifactId="trans" classifier="bin" />
+                    <assembly name="trdp" artifactId="trdp" classifier="bin" />
+                    <assembly name="une" artifactId="une" classifier="bin" />
+                    <assembly name="une_grabber" artifactId="une_grabber" classifier="bin" />
+                    <assembly name="url" artifactId="url" classifier="bin" />
+                    <assembly name="urlsite" artifactId="urlsite" classifier="bin" />
+                    <assembly name="ussd" artifactId="ussd" classifier="bin" />
+                    <assembly name="ussd2http" artifactId="ussd2http" classifier="bin" />
+
+                    <assembly name="rt" artifactId="rt" classifier="bin" />
+                    <assembly name="wap-color" artifactId="wap_color" classifier="bin" />
+                    <assembly name="une-push" artifactId="une_push" classifier="bin" />
+                    <assembly name="wap-srt" artifactId="wap_srt" classifier="bin" />
+
+                    <assembly name="installment-task" artifactId="installment-task" classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-ss01" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="ibwsrv" groupId="bol" artifactId="ibwsrv" basedir="/usr/local/ibw"
+                    delete_excludes="**/**" checksum_includes="*.ini:*.sh:_CMDINI/**" encoding="cp1251" eol="dos">
+                </component>
+                <component enabled="false" name="applications" groupId="bol" artifactId="applications" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                </component>
+            </server>
+            <server ref="cdp-ss01" app_server="bol-container" domain="1993" instance="default">
+                <component name="ibwsrv" groupId="bol" artifactId="ibwsrv" basedir="/usr/local/ibw"
+                    delete_excludes="**/**" checksum_includes="*.ini:*.sh:_CMDINI/**" encoding="cp1251" eol="dos">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+                <component name="applications" groupId="bol" artifactId="applications" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly name="core" artifactId="core" classifier="bin" />
+                    <assembly name="proxyst" artifactId="proxyst" classifier="bin" />
+					<assembly name="lbcore" artifactId="lbcore" classifier="bin" />
+					<assembly name="ems" artifactId="ems" classifier="bin" />
+					<assembly name="qstmng" artifactId="qstmng" classifier="bin" />
+					<assembly name="hameleon" artifactId="hameleon" classifier="bin" />
+					<assembly name="lb" artifactId="lb" classifier="bin" />
+					<assembly name="ivr" artifactId="ivr" classifier="bin" />
+					<assembly name="beecmd" artifactId="beecmd" classifier="bin" />
+					<assembly name="beesite" artifactId="beesite" classifier="bin" />
+					<assembly name="beedoc" artifactId="beedoc" classifier="bin" />
+                    <assembly name="ibwsrv" artifactId="ibwsrv" classifier="bin" />
+                    <assembly name="ibwext" artifactId="ibwext" classifier="bin" />
+                    <assembly name="sms" artifactId="sms" classifier="bin" />
+
+                    <assembly name="accessrights" artifactId="accessrights" classifier="bin" />
+                    <assembly name="anekdot" artifactId="anekdot" classifier="bin" />
+                    <assembly name="beseda" artifactId="beseda" classifier="bin" />
+                    <assembly name="bolnews" artifactId="bolnews" classifier="bin" />
+                    <assembly name="boltariff" artifactId="boltariff" classifier="bin" />
+                    <assembly name="celltick" artifactId="celltick" classifier="bin" />
+                    <assembly name="chat" artifactId="chat" classifier="bin" />
+                    <assembly name="command" artifactId="command" classifier="bin" />
+                    <assembly name="do" artifactId="do" classifier="bin" />
+                    <assembly name="dohttp" artifactId="dohttp" classifier="bin" />
+                    <assembly name="emsldr" artifactId="emsldr" classifier="bin" />
+                    <assembly name="fantiki" artifactId="fantiki" classifier="bin" />
+                    <assembly name="kp" artifactId="kp" classifier="bin" />
+                    <assembly name="ks" artifactId="ks" classifier="bin" />
+                    <assembly name="lla" artifactId="lla" classifier="bin" />
+                    <assembly name="logo" artifactId="logo" classifier="bin" />
+                    <assembly name="news" artifactId="news" classifier="bin" />
+                    <assembly name="post" artifactId="post" classifier="bin" />
+                    <assembly name="promo" artifactId="promo" classifier="bin" />
+                    <assembly name="provisioning" artifactId="provisioning" classifier="bin" />
+                    <assembly name="reportd" artifactId="reportd" classifier="bin" />
+                    <assembly name="sendme" artifactId="sendme" classifier="bin" />
+                    <assembly name="service" artifactId="service" classifier="bin" />
+                    <assembly name="smsproxy" artifactId="smsproxy" classifier="bin" />
+                    <assembly name="smstails" artifactId="smstails" classifier="bin" />
+                    <assembly name="smstext686" artifactId="smstext686" classifier="bin" />
+                    <assembly name="smtp" artifactId="smtp" classifier="bin" />
+                    <assembly name="submit" artifactId="submit" classifier="bin" />
+                    <assembly name="sym" artifactId="sym" classifier="bin" />
+                    <assembly name="telnet_sc" artifactId="telnet_sc" classifier="bin" />
+                    <assembly name="trans" artifactId="trans" classifier="bin" />
+                    <assembly name="trdp" artifactId="trdp" classifier="bin" />
+                    <assembly name="une" artifactId="une" classifier="bin" />
+                    <assembly name="une_grabber" artifactId="une_grabber" classifier="bin" />
+                    <assembly name="url" artifactId="url" classifier="bin" />
+                    <assembly name="urlsite" artifactId="urlsite" classifier="bin" />
+                    <assembly name="ussd" artifactId="ussd" classifier="bin" />
+                    <assembly name="ussd2http" artifactId="ussd2http" classifier="bin" />
+
+                    <assembly name="rt" artifactId="rt" classifier="bin" />
+                    <assembly name="wap-color" artifactId="wap_color" classifier="bin" />
+                    <assembly name="une-push" artifactId="une_push" classifier="bin" />
+                    <assembly name="wap-srt" artifactId="wap_srt" classifier="bin" />
+
+                    <assembly name="installment-task" artifactId="installment-task" classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <service name="bol-common-configs" enabled="true" description="Общие конфигурационные файлы">
+            <server ref="cdp-bolapp-sms" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="config" groupId="bol" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                </component>
+            </server>
+            <server ref="cdp-bolapp-sms" app_server="bol-container" domain="1993" instance="default">
+                <component name="config" groupId="bol" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-bolapp-sms" app_server="bol-container" domain="1994" instance="default">
+                <component name="config" groupId="bol" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-fo-sms" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="config" groupId="bol" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                </component>
+            </server>
+            <server ref="cdp-fo-sms" app_server="bol-container" domain="1993" instance="default">
+                <component name="config" groupId="bol" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-ss01" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="config" groupId="bol" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                </component>
+            </server>
+            <server ref="cdp-ss01" app_server="bol-container" domain="1993" instance="default">
+                <component name="config" groupId="bol" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+            </server>
+            <server ref="cdp-fo-builder" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="config" groupId="bol" artifactId="common_config" basedir="/opt/wap/core/java/conf"
+                    delete_excludes="wurfl*.xml:Wurfl*.xml:wurfl.dtd:*.kst:*.jks" checksum_excludes="META-INF/**:_LS/**:ctcertstore:wurfl*.xml:Wurfl*.xml:wurfl.dtd:*.kst:*.jks" encoding="cp1251">
+                </component>
+            </server>
+            <server ref="cdp-fo-builder" app_server="resin" domain="wap" instance="default">
+                <component name="config" groupId="bol" artifactId="common_config" basedir="/opt/wap/core/java/conf"
+                    delete_excludes="wurfl*.xml:Wurfl*.xml:wurfl.dtd:*.kst:*.jks" checksum_excludes="META-INF/**:_LS/**:ctcertstore:wurfl*.xml:Wurfl*.xml:wurfl.dtd:*.kst:*.jks" encoding="cp1251">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <service name="bol-bolapp-apache" description="Прокси сервер для бекофиса">
+            <server ref="cdp-bolapp-sms" app_server="apache" domain="default" instance="default">
+                <component name="apache" groupId="bol" artifactId="apache" basedir="/opt/bol/apache/"
+                    	delete_excludes="build/**:bin/**:cgi-bin/**:error/**:htdocs/**:icons/**:include/**:lib/**:logs/**:man/**:manual/**:modules/**:conf/ssl.crl/**:conf/ssl.crt/**:conf/ssl.csr/**:conf/ssl.key/**:conf/ssl.prm/**:conf/*.key:conf/*.cer:conf/*.crl:conf/*.crt"
+                    	checksum_includes="conf/**" checksum_excludes="conf/ssl.crl/**:conf/ssl.crt/**:conf/ssl.csr/**:conf/ssl.key/**:conf/ssl.prm/**:conf/*.key:conf/*.cer:conf/*.crl:conf/*.crt">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <service name="bol-fo-apache" description="Прокси сервер для wap портала и сервисов контентной части CDP">
+            <server ref="cdp-fo-builder" app_server="apache" domain="default" instance="default">
+                <component name="apache" groupId="bol" artifactId="apache" basedir="/opt/wap/httpd01_jet"
+                    	delete_excludes="build/**:bin/**:cgi-bin/**:error/**:htdocs/**:icons/**:include/**:lib/**:logs/**:man/**:manual/**:modules/**:ssl.crl/**:ssl.crt/**:conf/ssl.csr/**:ssl.key/**:ssl.prm/**" 
+                    	checksum_includes="conf/**" checksum_excludes="conf/ssl.crl/**:conf/ssl.crt/**:conf/ssl.csr/**:conf/ssl.key/**:conf/ssl.prm/**:conf/*.key:conf/*.cer:conf/*.crl:conf/*.crt">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <service name="bol-fo-web" description="WEB портал">
+            <server ref="cdp-fo-www" app_server="default" domain="default" instance="default">
+                <component name="web" groupId="bol" artifactId="web" basedir="/srv/www/beonline/"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:WEB-INF/**:images/dynamic/**:logo/icons/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cdp-fo-www" app_server="resin" domain="web" instance="default">
+                <component name="web" groupId="bol" artifactId="resin" basedir="/opt/bol/resin"
+                    delete_excludes="**/**" checksum_includes="conf/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <service name="bol-fo-wap" description="WAP портал">
+            <server ref="cdp-fo-builder" app_server="resin" domain="wap" instance="default">
+                <component name="wap" groupId="bol" artifactId="resin" basedir="/opt/wap/resin"
+                    delete_excludes="**/**" checksum_includes="conf/**">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <!-- CMB -->
+        <service name="cmb-applications" enabled="true" description="Прикладные обработчики CMB">
+            <server ref="bolcmb1" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="ibwsrv" groupId="cmb" artifactId="ibwsrv" basedir="/usr/local/ibw"
+                    delete_excludes="**/**" checksum_includes="*.ini:*.sh:_CMDINI/**" encoding="cp1251" eol="dos">
+                </component>
+                <component enabled="false" name="application-modules" groupId="cmb" artifactId="applications-modules" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                </component>
+                <component enabled="false" name="application-archive" groupId="cmb" artifactId="applications-archive" basedir="/usr/local/ibw/archive"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                </component>
+            </server>
+            <server ref="bolcmb1" app_server="bol-container" domain="1993" instance="default">
+                <component name="ibwsrv" groupId="cmb" artifactId="ibwsrv" basedir="/usr/local/ibw"
+                    delete_excludes="**/**" checksum_includes="*.ini:*.sh:_CMDINI/**" encoding="cp1251" eol="dos">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+
+                <component name="application-modules" groupId="cmb" artifactId="applications-modules" basedir="/usr/local/java/modules"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly name="core" artifactId="core" classifier="bin" />
+                    <assembly name="accessrights" artifactId="accessrights" classifier="bin" />
+                    <assembly name="ems" artifactId="ems" classifier="bin" />
+                    <assembly name="smsproxy" artifactId="smsproxy" classifier="bin" />
+                    <assembly name="reportd" artifactId="reportd" classifier="bin" />
+                </component>
+
+                <component name="application-archive" groupId="cmb" artifactId="applications-archive" basedir="/usr/local/ibw/archive"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly name="beecmd" artifactId="beecmd" classifier="bin" />
+                    <assembly name="beedoc" artifactId="beedoc" classifier="bin" />
+                    <assembly name="beesite" artifactId="beesite" classifier="bin" />
+                    <assembly name="ems" artifactId="ems" classifier="bin" />
+                    <assembly name="ibwsrv" artifactId="ibwsrv" classifier="bin" />
+                    <!--
+					<assembly name="ibwext" artifactId="ibwext" classifier="bin" />
+		    -->
+                    <assembly name="sms" artifactId="sms" classifier="bin" />
+                    <assembly name="smsproxy" artifactId="smsproxy" classifier="bin" />
+                    <assembly name="ussd2http" artifactId="ussd2http" classifier="bin" />
+                </component>
+            </server>
+            <server ref="cmbintra1" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="cmbintra1-application-modules" groupId="cmb" artifactId="cmbintra1-applications-modules"
+                    basedir="/usr/local/java/modules" delete_excludes="**/**" checksum_excludes="META-INF/**">
+                </component>
+            </server>
+            <server ref="cmbintra1" app_server="resin" domain="default" instance="default">
+                <component name="cmbintra1-application-modules" groupId="cmb" artifactId="cmbintra1-applications-modules"
+                    basedir="/usr/local/java/modules" delete_excludes="**/**" checksum_excludes="META-INF/**">
+                    <assembly name="core" artifactId="core" classifier="bin" />
+                    <assembly name="accessrights" artifactId="accessrights" classifier="bin" />
+                    <assembly name="reportd" artifactId="reportd" classifier="bin" />
+                </component>
+            </server>
+
+        </service>
+
+        <service name="cmb-common-lib" enabled="true" description="Разделяемые библиотеки CMB">
+            <server ref="bolcmb1" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="common_lib" groupId="cmb" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                </component>
+            </server>
+            <server ref="bolcmb1" app_server="bol-container" domain="1993" instance="default">
+                <component name="common_lib" groupId="cmb" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+            <server ref="cmbintra1" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="common_lib" groupId="cmb" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                </component>
+            </server>
+            <server ref="cmbintra1" app_server="resin" domain="default" instance="default">
+                <component name="common_lib" groupId="cmb" artifactId="common_lib" basedir="/usr/local/java/lib"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**">
+                    <assembly classifier="bin" />
+                </component>
+            </server>
+        </service>
+
+        <service name="cmb-common-configs" enabled="true" description="Общие конфигурационные файлы CMB">
+            <server ref="bolcmb1" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="config" groupId="cmb" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                </component>
+            </server>
+            <server ref="bolcmb1" app_server="bol-container" domain="1993" instance="default">
+                <component name="config" groupId="cmb" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+            </server>
+            <server ref="cmbintra1" app_server="default" domain="default" instance="default">
+                <component enabled="false" name="config" groupId="cmb" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                </component>
+            </server>
+            <server ref="cmbintra1" app_server="resin" domain="default" instance="default">
+                <component name="config" groupId="cmb" artifactId="common_config" basedir="/usr/local/java/conf"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:_LS/**:ctcertstore" encoding="cp1251">
+                    <assembly app_server="default" domain="default" classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <service name="cmb-backoffice" description="Бекофис CMB">
+            <server ref="cmbintra1" app_server="resin" domain="default" instance="default">
+                <component name="backoffice" groupId="cmb" artifactId="back_office" basedir="/srv/www/backoffice/back/"
+                    delete_excludes="**/**" checksum_excludes="META-INF/**:**/.svn/**:images/wap_images/**:ringtones/**:wap_images/**">
+                    <assembly classifier="bin" />
+                </component>
+                <component name="resin" groupId="cmb" artifactId="resin" basedir="/opt/callmeback/resin"
+                    delete_excludes="**/**" checksum_includes="conf/**" checksum_excludes="conf/dc345certstore">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+            <server ref="cmbintra1" app_server="apache" domain="default" instance="default">
+                <component enabled="false"  name="apache" groupId="cmb" artifactId="apache" basedir="/opt/callmeback/httpd"
+                    delete_excludes=
+                        "TEST_APACHE:build/**:bin/**:cgi-bin/**:error/**:htdocs/**:icons/**:include/**:lib/**:logs/**:man/**:m
+anual/**:modules/**:conf/ssl.crl/**:conf/ssl.crt/**:conf/ssl.csr/**:conf/ssl.key/**:conf/ssl.prm/**:conf/*.key:conf/*.cer:conf
+/*.crl:conf/*.crt" 
+                    checksum_includes="conf/**" checksum_excludes="conf/ssl.crl/**:conf/ssl.crt/**:conf/ssl.csr/**:conf/ssl.key/**:conf/ssl.prm/**:conf/*.key:conf/*.cer:conf/*.crl:conf/*.crt">
+                    <assembly classifier="config" />
+                </component>
+            </server>
+        </service>
+
+        <service name="cmb-apache" description="Прокси сервер для бекофиса CMB">
+            <server ref="cmbintra1" app_server="apache" domain="default" instance="default">
+                <component name="cmb-apache" groupId="cmb" artifactId="apache" basedir="/opt/callmeback/httpd"
+                    delete_excludes=
+                        "build/**:bin/**:cgi-bin/**:error/**:htdocs/**:icons/**:include/**:lib/**:logs/**:man/**:m
+anual/**:modules/**:conf/ssl.crl/**:conf/ssl.crt/**:conf/ssl.csr/**:conf/ssl.key/**:conf/ssl.prm/**:conf/*.key:conf/*.cer:conf
+/*.crl:conf/*.crt" 
+                    checksum_includes="conf/**" checksum_excludes="conf/ssl.crl/**:conf/ssl.crt/**:conf/ssl.csr/**:conf/ssl.key/**:conf/ssl.prm/**:conf/*.key:conf/*.cer:conf/*.crl:conf/*.crt">
+                    <assembly name="apache" classifier="config" />
+                </component>
+            </server>
+        </service>
+	
+    </services>
+</deploy>
