@@ -102,87 +102,92 @@
 
 (defn loc-to-instance
   [loc]
-  (let [node (zip/node loc)]
-    (struct-map
-      Instance
-      :name (:name (:attrs node))
-      :description (:description (:attrs node))
-      :id (:id (:attrs node))    
-      :home (:home (:attrs node))
-      :port (:port (:attrs node))
-      :user (:user (:attrs node))
-      :password (:password (:attrs node))
-      :protocol (:protocol (:attrs node)))))
+  (if-not (nil? loc)
+    (let [node (zip/node loc)]
+      (struct-map
+        Instance
+        :name (:name (:attrs node))
+        :description (:description (:attrs node))
+        :id (:id (:attrs node))    
+        :home (:home (:attrs node))
+        :port (:port (:attrs node))
+        :user (:user (:attrs node))
+        :password (:password (:attrs node))
+        :protocol (:protocol (:attrs node))))))
 
 (defn loc-to-domain
   [loc]
-  (let [node (zip/node loc)]
-    (struct-map 
-      Domain
-      :name (:name (:attrs node))
-      :description (:description (:attrs node))
-      :id (:id (:attrs node))
-      :home (:home (:attrs node))
-      :port (:port (:attrs node))
-      :user (:user (:attrs node))
-      :password (:password (:attrs node))
-      :protocol (:protocol (:attrs node))
-      :instance-map (named-list-to-map
-                      (map loc-to-instance (xml-> loc :instance))))))
+  (if-not (nil? loc)
+    (let [node (zip/node loc)]
+      (struct-map 
+        Domain
+        :name (:name (:attrs node))
+        :description (:description (:attrs node))
+        :id (:id (:attrs node))
+        :home (:home (:attrs node))
+        :port (:port (:attrs node))
+        :user (:user (:attrs node))
+        :password (:password (:attrs node))
+        :protocol (:protocol (:attrs node))
+        :instance-map (named-list-to-map
+                        (map loc-to-instance (xml-> loc :instance)))))))
 
 (defn loc-to-app-server
   [loc]
-  (let [node (zip/node loc)]
-    (struct-map 
-      AppServer
-      :name (:name (:attrs node))
-      :description (:description (:attrs node))
-      :type (:type (:attrs node))
-      :home (:home (:attrs node))
-      :port (:port (:attrs node))
-      :user (:user (:attrs node))
-      :password (:password (:attrs node))
-      :protocol (:protocol (:attrs node))
-      :domain-map (named-list-to-map
-                    (map loc-to-domain (xml-> loc :domain))))))
+  (if-not (nil? loc)
+    (let [node (zip/node loc)]
+      (struct-map 
+        AppServer
+        :name (:name (:attrs node))
+        :description (:description (:attrs node))
+        :type (:type (:attrs node))
+        :home (:home (:attrs node))
+        :port (:port (:attrs node))
+        :user (:user (:attrs node))
+        :password (:password (:attrs node))
+        :protocol (:protocol (:attrs node))
+        :domain-map (named-list-to-map
+                      (map loc-to-domain (xml-> loc :domain)))))))
 
 (defn loc-to-server
   [loc]
-  (let [node (zip/node loc)]
-    (struct-map
-      Server
-      :name (:name (:attrs node))
-      :description (:description (:attrs node))
-      :address (:address (:attrs node))
-      :port (:port (:attrs node))
-      :keyfile (:keyfile (:attrs node))
-      :jdk (:jdk (:attrs node))
-      :tar (:tar (:attrs node))
-      :os (:os (:attrs node))
-      :arch (:arch (:attrs node))
-      :domain (:domain (:attrs node))
-      :user (:user (:attrs node))
-      :password (:password (:attrs node))
-      :home (:home (:attrs node))
-      :enabled (:enabled (:attrs node))
-      :app-server-map (named-list-to-map
-                        (map loc-to-app-server (xml-> loc :app_server))))))
+  (if-not (nil? loc)
+    (let [node (zip/node loc)]
+      (struct-map
+        Server
+        :name (:name (:attrs node))
+        :description (:description (:attrs node))
+        :address (:address (:attrs node))
+        :port (:port (:attrs node))
+        :keyfile (:keyfile (:attrs node))
+        :jdk (:jdk (:attrs node))
+        :tar (:tar (:attrs node))
+        :os (:os (:attrs node))
+        :arch (:arch (:attrs node))
+        :domain (:domain (:attrs node))
+        :user (:user (:attrs node))
+        :password (:password (:attrs node))
+        :home (:home (:attrs node))
+        :enabled (:enabled (:attrs node))
+        :app-server-map (named-list-to-map
+                          (map loc-to-app-server (xml-> loc :app_server)))))))
 
 (defn loc-to-assembly
   [loc]
-  (let [node (zip/node loc)]
-    (struct-map
-      Assembly
-      :name (:name (:attrs node))
-      :group-id (:groupId (:attrs node))
-      :artifact-id (:artifactId (:attrs node))
-      :classifier (:classifier (:attrs node))
-      :package-type (:package-type (:attrs node)) 
-      :server-name (:server (:attrs node))
-      :app-server-name (:app_server (:attrs node))
-      :domain-name (:domain (:attrs node))
-      :instance-name (:instance (:attrs node)))))
-
+  (if-not (nil? loc)
+    (let [node (zip/node loc)]
+      (struct-map
+        Assembly
+        :name (:name (:attrs node))
+        :group-id (:groupId (:attrs node))
+        :artifact-id (:artifactId (:attrs node))
+        :classifier (:classifier (:attrs node))
+        :package-type (:package-type (:attrs node)) 
+        :server-name (:server (:attrs node))
+        :app-server-name (:app_server (:attrs node))
+        :domain-name (:domain (:attrs node))
+        :instance-name (:instance (:attrs node))))))
+  
 (defn split
   ([str]
   (split str #":"))  
@@ -191,27 +196,28 @@
 
 (defn loc-to-component
   [loc]
-  (let [node (zip/node loc) parent (zip/node (zip/up loc))]
-    (struct-map
-      Component
-      :name (:name (:attrs node))
-      :description (:description (:attrs node))
-      :group-id (:groupId (:attrs node))
-      :artifact-id (:artifactId (:attrs node))
-      :basedir (:basedir (:attrs node))
-      :checksum-include-list (split (:checksum_includes (:attrs node)))
-      :checksum-exclude-list (split (:checksum_excludes (:attrs node)))
-      :delete-exclude-list (split (:delete_excludes (:attrs node)))
-      :app-file (:app-file (:attrs node))
-      :enabled (:enabled (:attrs node))
-      :encoding (:encoding (:attrs node))
-      :eol (:eol (:attrs node))
-      :server-name (:ref (:attrs parent)) 
-      :app-server-name (:app_server (:attrs parent)) 
-      :domain-name (:domain (:attrs parent))
-      :instance-name (:instance (:attrs parent))
-      :dependent-list (split (:dependents (:attrs node)) #",")
-      :assembly-list  (map loc-to-assembly (xml-> loc :assembly)))))
+  (if-not (nil? loc)
+    (let [node (zip/node loc) parent (zip/node (zip/up loc))]
+      (struct-map
+	      Component
+	      :name (:name (:attrs node))
+	      :description (:description (:attrs node))
+	      :group-id (:groupId (:attrs node))
+	      :artifact-id (:artifactId (:attrs node))
+	      :basedir (:basedir (:attrs node))
+	      :checksum-include-list (split (:checksum_includes (:attrs node)))
+	      :checksum-exclude-list (split (:checksum_excludes (:attrs node)))
+	      :delete-exclude-list (split (:delete_excludes (:attrs node)))
+	      :app-file (:app-file (:attrs node))
+	      :enabled (:enabled (:attrs node))
+	      :encoding (:encoding (:attrs node))
+	      :eol (:eol (:attrs node))
+	      :server-name (:ref (:attrs parent)) 
+	      :app-server-name (:app_server (:attrs parent)) 
+	      :domain-name (:domain (:attrs parent))
+	      :instance-name (:instance (:attrs parent))
+	      :dependent-list (split (:dependents (:attrs node)) #",")
+	      :assembly-list  (map loc-to-assembly (xml-> loc :assembly))))))
 
 
    
