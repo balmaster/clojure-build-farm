@@ -26,6 +26,17 @@
             </app_server>
         </server>
    </servers>
+   <services>
+        <service enabled='true' name='service1' description='service1 description'>
+            <server ref='server1' app_server='resin' domain='default' instance='default'>
+                <component name='component1' groupId='group1' artifactId='artifact1' basedir='/opt/componentt1'
+                    checksum_excludes='META-INF/**:WEB-INF/*.log' delete_excludes='WEB-INF/*.log'>
+                    <assembly classifier='bin' />
+                    <assembly classifier='config' />
+                </component>
+            </server>
+        </service>
+   </services>
 </deploy>"))
 
 (deftest test-loc-to
@@ -145,14 +156,46 @@
 	                         :id "")
 	                       })
 	                    })
-                    })))))
-	                    
-	
-	                 
-	                   
-	                 
-	                 
-	
-                 
-                   
-                  
+                    }))))
+    (testing "assembly read"
+           (is (=
+                 (loc-to-assembly
+                   (first
+                     (xml-> data1 :services :service :server :component :assembly)))
+                 (struct-map
+                   Assembly
+                   :classifier "bin"))))
+    (testing "component read"
+           (is (=
+                 (loc-to-component
+                   (first
+                     (xml-> data1 :services :service :server :component)))
+                 (struct-map
+                   Component
+                   :name "component1"
+                   :description nil
+                   :group-id "group1"
+                   :artifact-id "artifact1"
+                   :basedir "/opt/componentt1"
+                   :checksum-include-list nil
+                   :checksum-exclude-list ["META-INF/**" "WEB-INF/*.log"]
+                   :delete-exclude-list ["WEB-INF/*.log"]
+                   :app-file nil
+                   :enabled nil
+                   :encoding nil
+                   :eol nil
+                   :server-name "server1"
+                   :app-server-name "resin"
+                   :domain-name "default"
+                   :instance-name "default"
+                   :dependent-list nil
+                   :assembly-list 
+                   [
+                    (struct-map
+                      Assembly
+                      :classifier "bin")
+                    
+                    (struct-map
+                      Assembly
+                      :classifier "config")
+                    ])))))

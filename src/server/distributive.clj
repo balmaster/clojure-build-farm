@@ -66,10 +66,10 @@
   :artifact-id
   :classifier
   :package-type
-  :server
-  :app-server
-  :domain
-  :instance)
+  :server-name
+  :app-server-name
+  :domain-name
+  :instance-name)
 
 (defstruct Component
   :name
@@ -84,10 +84,10 @@
   :enabled
   :encoding
   :eol
-  :server
-  :app-server
-  :domain
-  :instance
+  :server-name
+  :app-server-name
+  :domain-name
+  :instance-name
   :dependent-list
   :assembly-map
   )
@@ -178,22 +178,20 @@
       :artifact-id (:artifactId (:attrs node))
       :classifier (:classifier (:attrs node))
       :package-type (:package-type (:attrs node)) 
-      :server (:server (:attrs node))
-      :app-server (:app_server (:attrs node))
-      :domain (:domain (:attrs node))
-      :instance (:instance (:attrs node)))))
+      :server-name (:server (:attrs node))
+      :app-server-name (:app_server (:attrs node))
+      :domain-name (:domain (:attrs node))
+      :instance-name (:instance (:attrs node)))))
 
 (defn split
-  [str]
+  ([str]
   (split str #":"))  
-
-(defn split
-  [str delim]
-  (if str (string/split str delim)))  
+  ([str delim]
+  (if str (string/split str delim))))
 
 (defn loc-to-component
   [loc]
-  (let [node (zip/node loc)]
+  (let [node (zip/node loc) parent (zip/node (zip/up loc))]
     (struct-map
       Component
       :name (:name (:attrs node))
@@ -208,15 +206,12 @@
       :enabled (:enabled (:attrs node))
       :encoding (:encoding (:attrs node))
       :eol (:eol (:attrs node))
-      (comment
-      :server 
-      :app-server 
-      :domain
-      :instance
-      )
+      :server-name (:ref (:attrs parent)) 
+      :app-server-name (:app_server (:attrs parent)) 
+      :domain-name (:domain (:attrs parent))
+      :instance-name (:instance (:attrs parent))
       :dependent-list (split (:dependents (:attrs node)) #",")
-      :assembly-map (named-list-to-map
-                      (map loc-to-assembly (xml-> loc :assembly))))))
+      :assembly-list  (map loc-to-assembly (xml-> loc :assembly)))))
 
 
    
