@@ -1,7 +1,8 @@
 (ns server.distributive
   (use [clojure.data.zip.xml] )
   (require [clojure.xml :as xml]
-           [clojure.zip :as zip]))
+           [clojure.zip :as zip]
+           [clojure.string :as string]))
 
 
 (defstruct Deploy
@@ -83,12 +84,12 @@
   :enabled
   :encoding
   :eol
-  :dependent-list
-  :assembly-map
   :server
   :app-server
   :domain
   :instance
+  :dependent-list
+  :assembly-map
   )
   
 (defstruct Service
@@ -127,7 +128,7 @@
       :password (:password (:attrs node))
       :protocol (:protocol (:attrs node))
       :instance-map (named-list-to-map
-                      (nodes-to-x (xml-> loc :instance) loc-to-instance)))))
+                      (map loc-to-instance (xml-> loc :instance))))))
 
 (defn loc-to-app-server
   [loc]
@@ -143,7 +144,7 @@
       :password (:password (:attrs node))
       :protocol (:protocol (:attrs node))
       :domain-map (named-list-to-map
-                    (nodes-to-x (xml-> loc :domain) loc-to-domain)))))
+                    (map loc-to-domain (xml-> loc :domain))))))
 
 (defn loc-to-server
   [loc]
@@ -165,8 +166,58 @@
       :home (:home (:attrs node))
       :enabled (:enabled (:attrs node))
       :app-server-map (named-list-to-map
-                        (nodes-to-x (xml-> loc :app_server) loc-to-app-server)))))
-       
+                        (map loc-to-app-server (xml-> loc :app_server))))))
+
+(defn loc-to-assembly
+  [loc]
+  (let [node (zip/node loc)]
+    (struct-map
+      Assembly
+      :name (:name (:attrs node))
+      :group-id (:groupId (:attrs node))
+      :artifact-id (:artifactId (:attrs node))
+      :classifier (:classifier (:attrs node))
+      :package-type (:package-type (:attrs node)) 
+      :server (:server (:attrs node))
+      :app-server (:app_server (:attrs node))
+      :domain (:domain (:attrs node))
+      :instance (:instance (:attrs node)))))
+
+(defn split
+  [str]
+  (split str #":"))  
+
+(defn split
+  [str delim]
+  (if str (string/split str delim)))  
+
+(defn loc-to-component
+  [loc]
+  (let [node (zip/node loc)]
+    (struct-map
+      Component
+      :name (:name (:attrs node))
+      :description (:description (:attrs node))
+      :group-id (:groupId (:attrs node))
+      :artifact-id (:artifactId (:attrs node))
+      :basedir (:basedir (:attrs node))
+      :checksum-include-list (split (:checksum_includes (:attrs node)))
+      :checksum-exclude-list (split (:checksum_excludes (:attrs node)))
+      :delete-exclude-list (split (:delete_excludes (:attrs node)))
+      :app-file (:app-file (:attrs node))
+      :enabled (:enabled (:attrs node))
+      :encoding (:encoding (:attrs node))
+      :eol (:eol (:attrs node))
+      (comment
+      :server 
+      :app-server 
+      :domain
+      :instance
+      )
+      :dependent-list (split (:dependents (:attrs node)) #",")
+      :assembly-map (named-list-to-map
+                      (map loc-to-assembly (xml-> loc :assembly))))))
+
 
    
 (defn load-deploy-file
@@ -179,9 +230,10 @@
     (struct-map Deploy
       :path file
       :server-map (named-list-to-map 
-                    (nodes-to-x 
+                    (map 
+                      loc-to-server
                       (xml-> z :servers :server) 
-                      loc-to-server)))))
+                      )))))
       
 
 (defn get-server-list
